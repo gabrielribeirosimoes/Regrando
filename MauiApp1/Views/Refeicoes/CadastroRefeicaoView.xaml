@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Views.Refeicoes.CadastroRefeicaoView"
+             Shell.PresentationMode="Animated"
+             Title="CadastroRefeicaoView">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="TextColor" Value="Blue" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="Margin" Value="0,10,0,0" />
+            </Style>
+            <Style TargetType="Frame">
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Margin" Value="0,10,0,0" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="HasShadow" Value="False" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="BackgroundColor" Value="LightGray" />
+                <Setter Property="Margin" Value="10,0" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            </Style>
+            <Style TargetType="Picker">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="Margin" Value="10,0" />
+                <Setter Property="WidthRequest" Value="200" />
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="Margin" Value="0,10,0,0" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            </Style>
+            <Style x:Key="SalvarButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Orange" />
+            </Style>
+            <Style x:Key="CancelarButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="LightCoral" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="10" Padding="15" HorizontalOptions="FillAndExpand">
+            <Label Text="Cadastro de Refeição" />
+            <Frame>
+                <Entry Text="{Binding Id}" IsEnabled="False" />
+            </Frame>
+            <Label Text="Nome" />
+            <Frame>
+                <Entry Text="{Binding Nome}" />
+            </Frame>
+            <Label Text="Refeição" />
+            <Picker Title="---Selecione---" ItemsSource="{Binding ListaTiposClasse}" ItemDisplayBinding="{Binding Descricao}" SelectedItem="{Binding TipoClasseSelecionado}" />
+            <Label Text="Carboidratos" />
+            <Frame>
+                <Entry Text="{Binding Carboidratos}" Keyboard="Numeric" />
+            </Frame>
+            <Label Text="Gorduras" />
+            <Frame>
+                <Entry Text="{Binding Gorduras}" Keyboard="Numeric" />
+            </Frame>
+            <Label Text="Proteinas" />
+            <Frame>
+                <Entry Text="{Binding Proteinas}" Keyboard="Numeric" />
+            </Frame>
+            <Label Text="Calorias" />
+            <Frame>
+                <Entry Text="{Binding Calorias}" Keyboard="Numeric" />
+            </Frame>
+            <Label Text="Fibras" />
+            <Frame>
+                <Entry Text="{Binding Fibras}" Keyboard="Numeric" />
+            </Frame>
+            <Label Text="Sodio" />
+            <Frame>
+                <Entry Text="{Binding Sodio}" Keyboard="Numeric" />
+            </Frame>
+            <HorizontalStackLayout Spacing="20" HorizontalOptions="FillAndExpand">
+                <Button Text="Salvar" Command="{Binding SalvarCommand}" Style="{StaticResource SalvarButtonStyle}" />
+                <Button Text="Cancelar" Command="{Binding CancelarCommand}" Style="{StaticResource CancelarButtonStyle}" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

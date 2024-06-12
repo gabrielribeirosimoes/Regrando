@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Views.Usuarios.LoginView"
+             Title="LoginView"
+             BackgroundColor="LightSalmon">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Entry">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="WidthRequest" Value="250" />
+                <Setter Property="Margin" Value="10,0" />
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="LightSkyBlue" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="WidthRequest" Value="250" />
+                <Setter Property="Margin" Value="10,0" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0,10,0,0" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="Center">
+        <Label Text="Login" FontSize="Large" TextColor="White" />
+
+        <Frame CornerRadius="10" Padding="0" BackgroundColor="White" HorizontalOptions="Center" WidthRequest="250">
+            <Entry Placeholder="Digite seu nome de usuário" Text="{Binding Login}" />
+        </Frame>
+
+        <Frame CornerRadius="10" Padding="0" BackgroundColor="White" HorizontalOptions="Center" WidthRequest="250">
+            <Entry Placeholder="Digite a senha" Text="{Binding Senha}" IsPassword="True" />
+        </Frame>
+
+        <Button Text="Entrar" Command="{Binding AutenticarCommand}" />
+
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="5" Margin="30,20,30,0">
+            <Label Text="Não possui login?" />
+            <Label Text="Cadastre-se" FontAttributes="Bold" TextColor="White">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding DirecionarCadastroCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>
