@@ -19,10 +19,8 @@ CommandParameter="{Binding .}"></MenuItem>
                             </ViewCell.ContextActions>
                             <StackLayout Padding="10">
                                 <Label Text="{Binding Id}" FontSize="18" FontAttributes="Bold"/>
-                                <Label Text="{Binding Nome}" FontSize="18" FontAttributes="Bold"/>
                                 <Label Text="{Binding Consumo}" FontSize="14"/>
-                                <DatePicker />
-                                <TimePicker />
+                                <TimePicker FontAttributes="Bold"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

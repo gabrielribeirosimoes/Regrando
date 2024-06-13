@@ -34,8 +34,19 @@ namespace MauiApp1.ViewModels.Usuarios
         #endregion
 
         #region AtributosPropriedades
+        private string nome = string.Empty;
         private string login = string.Empty;
         private string senha = string.Empty;
+
+        public string Nome
+        {
+            get => nome;
+            set
+            {
+                nome = value;
+                OnPropertyChanged(Nome);
+            }
+        }
 
         public string Login
         {
@@ -64,6 +75,7 @@ namespace MauiApp1.ViewModels.Usuarios
             try
             {
                 Usuario usuario = new Usuario();
+                usuario.Nome = Nome;
                 usuario.Username = Login;
                 usuario.PasswordString = Senha;
 
@@ -74,6 +86,7 @@ namespace MauiApp1.ViewModels.Usuarios
                     string menssagem = $"Bem vindo(a) {usuarioAutenticado.Username}";
 
                     Preferences.Set("UsuarioId", usuarioAutenticado.Id);
+                    Preferences.Set("UsuarioNome", usuarioAutenticado.Nome);
                     Preferences.Set("UsuarioUsername", usuarioAutenticado.Username);
                     Preferences.Set("UsuarioPerfil", usuarioAutenticado.Perfil);
                     Preferences.Set("UsuarioToken", usuarioAutenticado.Token);
@@ -102,6 +115,7 @@ namespace MauiApp1.ViewModels.Usuarios
             try
             {
                 Usuario usuario = new Usuario();
+                usuario.Nome = Nome;
                 usuario.Username = Login;
                 usuario.PasswordString = Senha;
 

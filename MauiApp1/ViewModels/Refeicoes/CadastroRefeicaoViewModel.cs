@@ -124,7 +124,7 @@ namespace MauiApp1.ViewModels.Refeicoes
                     Calorias = calorias,
                     Fibras = fibras,
                     Sodio = sodio,
-                    Classe = (ClasseEnum)tipoClasseSelecionado.Id
+                    Classe = (TipoRefeicaoEnum)tipoClasseSelecionado.Id
                 };
 
                 if (refeicao.Id == 0)

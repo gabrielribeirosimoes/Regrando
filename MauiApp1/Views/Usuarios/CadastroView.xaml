@@ -30,6 +30,7 @@
     </ContentPage.Resources>
     <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="CenterAndExpand" HorizontalOptions="Center">
         <Label Text="Cadastro de Usuário" />
+        <Entry Placeholder="Digite seu nome " Text="{Binding Nome}" />
         <Entry Placeholder="Digite seu nome de usuário" Text="{Binding Login}" />
         <Entry Placeholder="Digite a senha" Text="{Binding Senha}" IsPassword="True" />
         <Button Text="Registrar" Command="{Binding RegistrarCommand}" />

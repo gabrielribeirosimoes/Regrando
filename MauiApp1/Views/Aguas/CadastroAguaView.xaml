@@ -52,7 +52,7 @@
             </Frame>
             <Label Text="Horário" />
             <Frame>
-                <Entry Text="{Binding Datetime}" Keyboard="Numeric" />
+                <TimePicker FontAttributes="Bold"/>
             </Frame>
             <HorizontalStackLayout Spacing="20" HorizontalOptions="FillAndExpand">
                 <Button Text="Salvar" Command="{Binding SalvarCommand}" Style="{StaticResource SalvarButtonStyle}" />

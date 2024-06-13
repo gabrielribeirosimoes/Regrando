@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace MauiApp1.Models.Enuns
 {
-    public enum ClasseEnum
+    public enum TipoSexoEnum
     {
-        NaoSelecionada = 0,
-        Cafedamanha = 1,
-        Almoco = 2,
-        Cafedatarde = 3,
-        Janta = 4,
-
+        Masculino = 1,
+        Feminino = 2,
     }
 }

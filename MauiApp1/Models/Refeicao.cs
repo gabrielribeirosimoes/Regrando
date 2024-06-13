@@ -17,6 +17,6 @@ namespace MauiApp1.Models
         public int Calorias { get; set; }
         public int Fibras { get; set; }
         public int Sodio { get; set; }
-        public ClasseEnum Classe { get; set; }
+        public TipoRefeicaoEnum Classe { get; set; }
     }
 }
