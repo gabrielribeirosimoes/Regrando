@@ -1,9 +1,15 @@
+using MauiApp1.ViewModels.Usuarios;
+
 namespace MauiApp1.Views.Usuarios;
 
 public partial class CadastroInformacoesView : ContentPage
 {
-	public CadastroInformacoesView()
+    CadastroInformacoesViewModel viewModel;
+
+    public CadastroInformacoesView()
 	{
-		InitializeComponent();
-	}
+        InitializeComponent();
+        viewModel = new CadastroInformacoesViewModel();
+        BindingContext = viewModel;
+    }
 }

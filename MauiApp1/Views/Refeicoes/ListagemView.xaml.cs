@@ -12,7 +12,7 @@ public partial class ListagemView : ContentPage
 
 			viewModel = new ListagemRefeicaoViewModel();
 			BindingContext = viewModel;
-			Title = "Refeicoes - App Regrando";
+			Title = "Refeições";
         }
 
     protected override void OnAppearing()

@@ -10,7 +10,7 @@ public partial class ListagemView : ContentPage
 		InitializeComponent();
         viewModel = new ListagemAguaViewModel();
         BindingContext = viewModel;
-        Title = "Hidratação - App Regrando";
+        Title = "Hidratação";
     }
 
     protected override void OnAppearing()

@@ -19,6 +19,8 @@
                                 <Label Text="{Binding Id}" FontSize="18" FontAttributes="Bold"/>
                                 <Label Text="{Binding Nome}" FontSize="18" FontAttributes="Bold"/>
                                 <Label Text="{Binding Descricao}" FontSize="14"/>
+                                <Label Text="{Binding Ingredientes}" FontSize="14"/>
+                                <Label Text="{Binding Preparo}" FontSize="14"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

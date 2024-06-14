@@ -57,7 +57,7 @@
             <Frame>
                 <Entry Text="{Binding Nome}" />
             </Frame>
-            <Label Text="Refeição" />
+            <Label Text="Tipoe de Refeição" />
             <Picker Title="---Selecione---" ItemsSource="{Binding ListaTiposClasse}" ItemDisplayBinding="{Binding Descricao}" SelectedItem="{Binding TipoClasseSelecionado}" />
             <Label Text="Carboidratos" />
             <Frame>

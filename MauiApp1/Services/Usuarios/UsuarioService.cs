@@ -22,7 +22,12 @@ namespace MauiApp1.Services.Usuarios
             usuario.Id = await _request.PostReturnIntAsync(apiUrlBase + uriComplementar, usuario, string.Empty);
             return usuario;
         }
-
+        public async Task<TipoMetas> PostRegistrarTipoMetasAsync(TipoMetas tipoMetas)
+        {
+            string uriComplementar = "/Registrar";
+            tipoMetas.Id = await _request.PostReturnIntAsync(apiUrlBase + uriComplementar, tipoMetas, string.Empty);
+            return tipoMetas;
+        }
         public async Task<Usuario> PostAutenticarUsuarioAsync(Usuario usuario)
         {
             string uriComplementar = "/Autenticar";

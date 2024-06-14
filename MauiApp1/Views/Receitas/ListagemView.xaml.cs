@@ -10,7 +10,7 @@ public partial class ListagemView : ContentPage
         InitializeComponent();
         viewModel = new ListagemReceitaViewModel();
         BindingContext = viewModel;
-        Title = "Receitas - App Regrando";
+        Title = "Receitas";
     }
 
     protected override void OnAppearing()

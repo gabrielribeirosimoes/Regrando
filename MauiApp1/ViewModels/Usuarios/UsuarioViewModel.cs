@@ -119,16 +119,30 @@ namespace MauiApp1.ViewModels.Usuarios
                 usuario.Username = Login;
                 usuario.PasswordString = Senha;
 
-                Usuario usuarioRegistrado = await _uService.PostRegistrarUsuarioAsync(usuario);
+                Usuario usuarioRegistrado = new Usuario();// await _uService.PostRegistrarUsuarioAsync(usuario);
+                usuarioRegistrado.Id = 1;
 
                 if (usuarioRegistrado.Id != 0)
                 {
                     string mensagem = $"Usuario Id: {usuarioRegistrado.Id} registrado com sucesso";
                     await Application.Current.MainPage.DisplayAlert("Informação", mensagem, "Ok");
 
-                    await Application.Current.MainPage
-                        .Navigation.PopAsync();
+                    Application.Current.MainPage = new NavigationPage(new Views.Usuarios.CadastroInformacoesView());
                 }
+
+
+
+                
+
+
+
+
+
+
+
+
+
+
             }
             catch (Exception ex)
             {

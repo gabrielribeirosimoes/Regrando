@@ -3,10 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.Views.Usuarios.CadastroInformacoesView"
              Title="CadastroInformacoesView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+    <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="CenterAndExpand" HorizontalOptions="Center">
+        <Label Text="Registro de Informações" />
+        <Label Text="Escolha sua meta" />
+        <Picker Title="---Selecione---" ItemsSource="{Binding ListaTiposMeta}" ItemDisplayBinding="{Binding Descricao}" SelectedItem="{Binding TipoMetasSelecionado}" />
+        <Label Text="Tipoe de Refeição" />
+        <Picker Title="---Selecione---" ItemsSource="{Binding ListaTiposSexo}" ItemDisplayBinding="{Binding Descricao}" SelectedItem="{Binding TipoSexoSelecionado}" />
+        <Entry Placeholder="Digite seu peso" Text="{Binding Idade}" />
+        <Entry Placeholder="Digite sua altura " Text="{Binding Altura}" />
+        <Entry Placeholder="Digite seu peso" Text="{Binding Peso}" />
+        <CheckBox x:Name = "cb1"/>
+        <Label Text="Queremos que entenda como utilizamos seus dados. Aceite os termos e condições para criar sua conta Regrando.
+                     Voce pode retirar a autorização a qualquer momento." />
+
     </VerticalStackLayout>
 </ContentPage>

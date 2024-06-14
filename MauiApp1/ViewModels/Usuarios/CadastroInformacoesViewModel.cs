@@ -13,8 +13,22 @@ namespace MauiApp1.ViewModels.Usuarios
 {
     public class CadastroInformacoesViewModel : BaseViewModel
     {
+        private UsuarioService _uService;
 
+        public CadastroInformacoesViewModel()
+        {
+            _uService = new UsuarioService();
+            InicializarCommands();
+        }
 
+        public void InicializarCommands()
+        {
+            RegistrarCommand = new Command(async () => await RegistrarUsuario());
+            DirecionarCadastroCommand = new Command(async () => await DirecionarParaCadastro());
+        }
+
+        public ICommand RegistrarCommand { get; set; }
+        public ICommand DirecionarCadastroCommand { get; set; }
         #region AtributosPropriedades
 
         public ObservableCollection<TipoMetas> ListaTiposMetas;
@@ -23,6 +37,7 @@ namespace MauiApp1.ViewModels.Usuarios
         private double altura = 0;
         private double peso = 0;
         private TipoMetas tipoMetasSelecionado;
+        private TipoSexo tipoSexoSelecionado;
 
 
         public int Idade
@@ -68,10 +83,23 @@ namespace MauiApp1.ViewModels.Usuarios
                 }
             }
         }
+
+        public TipoSexo TipoSexoSelecionado
+        {
+            get { return tipoSexoSelecionado; }
+            set
+            {
+                if (value != null)
+                {
+                    tipoSexoSelecionado = value;
+                    OnPropertyChanged(nameof(ListaTiposSexo));
+                }
+            }
+        }
         #endregion
 
-        #region
-        public async Task ObterClasses()
+        #region Metódos
+        public async Task ObterMetas()
         {
             try
             {
@@ -84,6 +112,60 @@ namespace MauiApp1.ViewModels.Usuarios
             {
                 await Application.Current.MainPage
                         .DisplayAlert("Ops", ex.Message + " Detalhes: " + ex.InnerException, "Ok");
+            }
+        }
+
+        public async Task ObterSexo()
+        {
+            try
+            {
+                ListaTiposSexo.Add(new TipoSexo() { Id = 1, Descricao = "Masculino" });
+                ListaTiposSexo.Add(new TipoSexo() { Id = 2, Descricao = "Feminino" });
+                OnPropertyChanged(nameof(ListaTiposSexo));
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage
+                        .DisplayAlert("Ops", ex.Message + " Detalhes: " + ex.InnerException, "Ok");
+            }
+        }
+
+        public async Task RegistrarUsuario()
+        {
+            try
+            {
+                TipoMetas tipoMetas = new TipoMetas();
+                tipoMetas.Id = Idade;
+
+                TipoMetas tipoMetasRegistrado = new TipoMetas();// await _uService.PostRegistrarTipoMetasAsync(tipoMetas);
+                tipoMetasRegistrado.Id = 1;
+
+                if (tipoMetasRegistrado.Id != 0)
+                {
+                    string mensagem = $"Usuario Id: {tipoMetasRegistrado.Id} registrado com sucesso";
+                    await Application.Current.MainPage.DisplayAlert("Informação", mensagem, "Ok");
+
+                    Application.Current.MainPage = new NavigationPage(new Views.Usuarios.LoginView());
+                }
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage
+                        .DisplayAlert("Informação", ex.Message + " Detalhes: " + ex.InnerException, "OK");
+            }
+        }
+
+        public async Task DirecionarParaCadastro()
+        {
+            try
+            {
+                await Application.Current.MainPage
+                         .Navigation.PushAsync(new CadastroView());
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage
+                        .DisplayAlert("Informação", ex.Message + " Detalhes: " + ex.InnerException, "OK");
             }
         }
         #endregion

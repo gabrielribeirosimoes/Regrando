@@ -10,6 +10,6 @@ public partial class CadastroRefeicaoView : ContentPage
 		InitializeComponent();
 		cadastroRefeicaoViewModel = new CadastroRefeicaoViewModel();
 		BindingContext = cadastroRefeicaoViewModel;
-		Title = "Nova Refeicao";
+		Title = "Nova Refeição";
 	}
 }
