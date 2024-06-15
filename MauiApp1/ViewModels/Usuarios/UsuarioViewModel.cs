@@ -86,7 +86,6 @@ namespace MauiApp1.ViewModels.Usuarios
                     string menssagem = $"Bem vindo(a) {usuarioAutenticado.Username}";
 
                     Preferences.Set("UsuarioId", usuarioAutenticado.Id);
-                    Preferences.Set("UsuarioNome", usuarioAutenticado.Nome);
                     Preferences.Set("UsuarioUsername", usuarioAutenticado.Username);
                     Preferences.Set("UsuarioPerfil", usuarioAutenticado.Perfil);
                     Preferences.Set("UsuarioToken", usuarioAutenticado.Token);

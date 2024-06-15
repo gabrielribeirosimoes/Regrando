@@ -11,7 +11,7 @@ namespace MauiApp1.Services.Receitas
     public class ReceitaService : Request
     {
         private readonly Request _request;
-        private const string apiUrlBase = "https://rpgapi20241pam.azurewebsites.net/Personagens";
+        private const string apiUrlBase = "";
         private string _token;
 
         public ReceitaService(string token)
