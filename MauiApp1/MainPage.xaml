@@ -7,6 +7,11 @@
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
+            <!-- Saudação com base no horário e nome do usuário -->
+            <Label x:Name="GreetingLabel"
+                   Style="{StaticResource Headline}"
+                   SemanticProperties.HeadingLevel="Level1" />
+
             <Image
                 Source="regrando.ico"
                 HeightRequest="185"
@@ -17,6 +22,33 @@
                 Text="Bem-vindo &#10; ao Regrando"
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level1" />
+
+            <!-- Parte de rolar para visualizar calorias e ingestão de água -->
+            <ScrollView Orientation="Horizontal">
+                <StackLayout Orientation="Horizontal" Spacing="20">
+                    <Frame BorderColor="Black" Padding="10">
+                        <StackLayout>
+                            <Label Text="Calorias Consumidas" FontSize="Medium" />
+                            <Label x:Name="CaloriesLabel" FontSize="Large" Text="0 kcal" />
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame BorderColor="Black" Padding="10">
+                        <StackLayout>
+                            <Label Text="Ingestão de Água" FontSize="Medium" />
+                            <Label x:Name="WaterIntakeLabel" FontSize="Large" Text="0 L" />
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+
+            <!-- Caixinha com resumo das Receitas na parte inferior -->
+            <Frame BorderColor="Black" Padding="10" VerticalOptions="EndAndExpand">
+                <StackLayout>
+                    <Label Text="Novas Receitas" FontSize="Medium" FontAttributes="Bold" />
+                    <Label x:Name="RecipesSummaryLabel" FontSize="Small" Text="Aqui vai um resumo das receitas..." />
+                </StackLayout>
+            </Frame>
 
         </VerticalStackLayout>
     </ScrollView>
