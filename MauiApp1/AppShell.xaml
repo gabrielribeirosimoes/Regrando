@@ -8,9 +8,10 @@
     xmlns:viewsAguas ="clr-namespace:MauiApp1.Views.Aguas"
     xmlns:viewsReceitas ="clr-namespace:MauiApp1.Views.Receitas"
     xmlns:local="clr-namespace:MauiApp1"
-    Title="MauiApp1">
+    Title="Regrando">
 
     <Shell.FlyoutHeaderTemplate>
+
         <DataTemplate>
             <Grid>
                 <Grid.RowDefinitions>
@@ -19,9 +20,9 @@
                     <RowDefinition Height="40"></RowDefinition>
                 </Grid.RowDefinitions>
                 <FlexLayout Grid.Row="0" Direction="Row" AlignItems="Center" >
-                    <Frame Padding="0" CornerRadius="40" 
+                    <Frame Padding="0" CornerRadius="40"
                     HeightRequest="80" WidthRequest="80" >
-                        <Image/>
+                        <Image Source="regrando.ico"/>
                     </Frame>
                     <VerticalStackLayout Padding="10,0,0,0" Spacing="0">
                         <Label Text="Regrando" FontAttributes="Bold" FontSize="Medium" />
@@ -30,6 +31,7 @@
             </Grid>
         </DataTemplate>
     </Shell.FlyoutHeaderTemplate>
+    
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent
@@ -45,11 +47,8 @@
 Title="Receitas" Icon="menureceita.svg"
 ContentTemplate="{DataTemplate viewsReceitas:ListagemView}" />
 
-        <Tab Title="Menu" Route="Menu" Icon="menu.svg">
-            <ShellContent Title="Sobre" Route="sobre" ContentTemplate="{DataTemplate local:AboutView}"/>
-        </Tab>
         <ShellContent
-    Title="Usuário" Icon="menuusuarios.svg"
+    Title="Perfil" Icon="menuusuarios.svg"
     ContentTemplate="{DataTemplate viewsUsuarios:ListagemView}" />
     </FlyoutItem>
 

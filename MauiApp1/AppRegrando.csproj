@@ -64,9 +64,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="AboutView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Views\Aguas\CadastroAguaView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
