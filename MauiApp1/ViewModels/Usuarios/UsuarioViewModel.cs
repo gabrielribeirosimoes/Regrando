@@ -1,20 +1,19 @@
-﻿using MauiApp1.Models;
-using MauiApp1.Services.Usuarios;
-using MauiApp1.Views.Usuarios;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Storage;
+using MauiApp1.Models;
+using MauiApp1.Services.Usuarios;
+using MauiApp1.Views.Usuarios;
 
 namespace MauiApp1.ViewModels.Usuarios
 {
     public class UsuarioViewModel : BaseViewModel
     {
-        private UsuarioService _uService;
+        private readonly UsuarioService _uService;
 
-        public UsuarioViewModel() 
+        public UsuarioViewModel()
         {
             _uService = new UsuarioService();
             InicializarCommands();
@@ -27,7 +26,7 @@ namespace MauiApp1.ViewModels.Usuarios
             DirecionarCadastroCommand = new Command(async () => await DirecionarParaCadastro());
         }
 
-        #region
+        #region Commands
         public ICommand AutenticarCommand { get; set; }
         public ICommand RegistrarCommand { get; set; }
         public ICommand DirecionarCadastroCommand { get; set; }
@@ -44,7 +43,7 @@ namespace MauiApp1.ViewModels.Usuarios
             set
             {
                 nome = value;
-                OnPropertyChanged(Nome);
+                OnPropertyChanged(nameof(Nome));
             }
         }
 
@@ -54,7 +53,7 @@ namespace MauiApp1.ViewModels.Usuarios
             set
             {
                 login = value;
-                OnPropertyChanged(Login);
+                OnPropertyChanged(nameof(Login));
             }
         }
 
@@ -64,48 +63,46 @@ namespace MauiApp1.ViewModels.Usuarios
             set
             {
                 senha = value;
-                OnPropertyChanged(Senha);
+                OnPropertyChanged(nameof(Senha));
             }
         }
         #endregion
 
-        #region
+        #region Métodos
         public async Task AutenticarUsuario()
         {
             try
             {
-                Usuario usuario = new Usuario();
-                usuario.Nome = Nome;
-                usuario.Username = Login;
-                usuario.PasswordString = Senha;
+                Usuario usuario = new Usuario
+                {
+                    Nome = Nome,
+                    Username = Login,
+                    PasswordString = Senha
+                };
 
                 Usuario usuarioAutenticado = await _uService.PostAutenticarUsuarioAsync(usuario);
 
                 if (!string.IsNullOrEmpty(usuarioAutenticado.Token))
                 {
-                    string menssagem = $"Bem vindo(a) {usuarioAutenticado.Username}";
+                    string mensagem = $"Bem-vindo(a) {usuarioAutenticado.Username}";
 
                     Preferences.Set("UsuarioId", usuarioAutenticado.Id);
                     Preferences.Set("UsuarioUsername", usuarioAutenticado.Username);
                     Preferences.Set("UsuarioPerfil", usuarioAutenticado.Perfil);
                     Preferences.Set("UsuarioToken", usuarioAutenticado.Token);
 
-                    await Application.Current.MainPage
-                        .DisplayAlert("Informações", menssagem, "Ok");
+                    await Application.Current.MainPage.DisplayAlert("Informação", mensagem, "Ok");
 
                     Application.Current.MainPage = new AppShell();
-
                 }
                 else
                 {
-                    await Application.Current.MainPage
-                        .DisplayAlert("Informação", "Dados incorretos :(", "Ok");
+                    await Application.Current.MainPage.DisplayAlert("Informação", "Dados incorretos :(", "Ok");
                 }
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage
-                        .DisplayAlert("Informação", ex.Message + "Detalhes: " + ex.InnerException, "Ok");
+                await Application.Current.MainPage.DisplayAlert("Informação", ex.Message + " Detalhes: " + ex.InnerException, "Ok");
             }
         }
 
@@ -113,40 +110,26 @@ namespace MauiApp1.ViewModels.Usuarios
         {
             try
             {
-                Usuario usuario = new Usuario();
-                usuario.Nome = Nome;
-                usuario.Username = Login;
-                usuario.PasswordString = Senha;
+                Usuario usuario = new Usuario
+                {
+                    Nome = Nome,
+                    Username = Login,
+                    PasswordString = Senha
+                };
 
-                Usuario usuarioRegistrado = new Usuario();// await _uService.PostRegistrarUsuarioAsync(usuario);
-                usuarioRegistrado.Id = 1;
+                Usuario usuarioRegistrado = await _uService.PostRegistrarUsuarioAsync(usuario);
 
                 if (usuarioRegistrado.Id != 0)
                 {
                     string mensagem = $"Usuario Id: {usuarioRegistrado.Id} registrado com sucesso";
                     await Application.Current.MainPage.DisplayAlert("Informação", mensagem, "Ok");
 
-                    Application.Current.MainPage = new NavigationPage(new Views.Usuarios.CadastroInformacoesView());
+                    Application.Current.MainPage = new NavigationPage(new CadastroInformacoesView());
                 }
-
-
-
-                
-
-
-
-
-
-
-
-
-
-
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage
-                        .DisplayAlert("Informação", ex.Message + " Detalhes: " + ex.InnerException, "OK");
+                await Application.Current.MainPage.DisplayAlert("Informação", ex.Message + " Detalhes: " + ex.InnerException, "Ok");
             }
         }
 
@@ -154,18 +137,13 @@ namespace MauiApp1.ViewModels.Usuarios
         {
             try
             {
-                await Application.Current.MainPage
-                         .Navigation.PushAsync(new CadastroView());
+                await Application.Current.MainPage.Navigation.PushAsync(new CadastroView());
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage
-                        .DisplayAlert("Informação", ex.Message + " Detalhes: " + ex.InnerException, "OK");
+                await Application.Current.MainPage.DisplayAlert("Informação", ex.Message + " Detalhes: " + ex.InnerException, "Ok");
             }
         }
         #endregion
     }
 }
-
-
-

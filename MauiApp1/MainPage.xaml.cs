@@ -1,4 +1,7 @@
-﻿namespace MauiApp1
+﻿using Microsoft.Maui.Controls;
+using Microsoft.Maui.Storage;
+
+namespace MauiApp1
 {
     public partial class MainPage : ContentPage
     {
@@ -8,12 +11,13 @@
         {
             InitializeComponent();
             SetGreeting();
-
+            BindingContext = this;
         }
+
         private void SetGreeting()
         {
-            // Aqui, você substituirá "username" pelo nome real do usuário, que você deve obter do login.
-            string username = "Usuário"; // Exemplo: obter do login
+            // Recuperando o nome do usuário das preferências
+            string username = Preferences.Get("UsuarioUsername", "Usuário");
 
             string greeting;
             int hour = DateTime.Now.Hour;
@@ -33,5 +37,7 @@
 
             GreetingLabel.Text = $"{greeting}, {username}!";
         }
+
+
     }
 }
