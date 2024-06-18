@@ -3,9 +3,7 @@
 O **REGRANDO** é um aplicativo mobile que te ajuda a alcançar seus objetivos de saúde e bem-estar de forma fácil e acessível. Com nosso aplicativo, você pode:
 
 - **Registrar suas refeições e hidratação:** Monitore o que você come e bebe para ter uma visão completa da sua ingestão nutricional.
-- **Participar da comunidade com nutricionistas:** Tire suas dúvidas, receba dicas e participe de grupos de apoio com nutricionistas experientes.
 - **Acessar receitas saudáveis:** Encontre milhares de receitas deliciosas e nutritivas para todos os gostos e necessidades.
-- **Agendar consultas com um nutricionista online:** Converse com um nutricionista em tempo real, no conforto da sua casa.
 
 ## Desenvolvido por Alunos da Etec Professor Horácio Augusto da Silveira
 
