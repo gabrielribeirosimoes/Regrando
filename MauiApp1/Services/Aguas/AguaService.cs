@@ -11,7 +11,7 @@ namespace MauiApp1.Services.Aguas
     public class AguaService : Request
     {
         private readonly Request _request;
-        private const string apiUrlBase = "";
+        private const string apiUrlBase = "http://DBRegrando.mssql.somee.com/api/Aguas";
         private string _token;
 
         public AguaService(string token)

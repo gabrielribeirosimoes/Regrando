@@ -1,47 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiApp1.MainPage">
+             x:Class="MauiApp1.MainPage"
+            >
 
-    <Frame Padding="0" CornerRadius="15" BackgroundColor="#EFEFEF">
+    <Frame Padding="0" CornerRadius="15" BackgroundColor="LightSalmon">
         <ScrollView>
-            <StackLayout Padding="30,0" Spacing="25">
+            <StackLayout Padding="10,0" Spacing="40">
                 <!-- Saudação com base no horário e nome do usuário -->
                 <Label x:Name="GreetingLabel"
                        Style="{StaticResource Headline}"
                        SemanticProperties.HeadingLevel="Level1"
                        Text="{Binding GreetingLabel}" />
 
-                <Image Source="regrando.ico"
-                       HeightRequest="185"
-                       Aspect="AspectFit"
-                       SemanticProperties.Description="dot net bot in a race car number eight" />
 
-                <Label Text="Bem-vindo &#10; ao Regrando"
-                       Style="{StaticResource Headline}"
-                       SemanticProperties.HeadingLevel="Level1" />
+
+                <Label Text="Bem-vindo ao Regrando"
+       Style="{StaticResource Headline}"
+       SemanticProperties.HeadingLevel="Level1"
+       LineBreakMode="TailTruncation"
+       FontSize="20" />
 
                 <!-- Parte de rolar para visualizar calorias e ingestão de água -->
                 <ScrollView Orientation="Horizontal">
-                    <StackLayout Orientation="Horizontal" Spacing="20">
-                        <Frame BorderColor="Black" Padding="10" BackgroundColor="White" CornerRadius="10">
+                    <StackLayout Orientation="Horizontal" Spacing="15" HorizontalOptions="CenterAndExpand">
+                        <Frame BorderColor="Black" Padding="20" BackgroundColor="White" CornerRadius="30">
                             <StackLayout>
-                                <Label Text="Calorias Consumidas" FontSize="Medium" />
+                                <Label Text="Calorias Consumidas" FontSize="Large" />
                                 <Label x:Name="CaloriesLabel" FontSize="Large" Text="0 kcal" />
                             </StackLayout>
                         </Frame>
 
-                        <Frame BorderColor="Black" Padding="10" BackgroundColor="White" CornerRadius="10">
+                        <Frame BorderColor="Black" Padding="20" BackgroundColor="White" CornerRadius="30">
                             <StackLayout>
-                                <Label Text="Ingestão de Água" FontSize="Medium" />
+                                <Label Text="Ingestão de Água" FontSize="Large" />
                                 <Label x:Name="WaterIntakeLabel" FontSize="Large" Text="0 L" />
                             </StackLayout>
                         </Frame>
                     </StackLayout>
                 </ScrollView>
 
+
                 <!-- Caixinha com resumo das Receitas na parte inferior -->
-                <Frame BorderColor="Black" Padding="10" BackgroundColor="#EFEFEF" CornerRadius="15" VerticalOptions="EndAndExpand" HeightRequest="100">
+                <Frame BorderColor="Black" Padding="20" BackgroundColor="#EFEFEF" CornerRadius="30" VerticalOptions="CenterAndExpand" HeightRequest="250">
                     <StackLayout>
                         <Label Text="Novas Receitas" FontSize="Medium" FontAttributes="Bold" />
                         <Label x:Name="RecipesSummaryLabel" FontSize="Small" Text="Aqui vai um resumo das receitas..." />
