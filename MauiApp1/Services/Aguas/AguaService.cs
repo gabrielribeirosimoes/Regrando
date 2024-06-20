@@ -1,52 +1,78 @@
-﻿using MauiApp1.Models;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Net.Http;
+using Newtonsoft.Json;
+using MauiApp1.Models;
+using System.Text;
+
 
 namespace MauiApp1.Services.Aguas
 {
-    public class AguaService : Request
+    public class AguaService
     {
-        private readonly Request _request;
-        private const string apiUrlBase = "";
-        private string _token;
+        private const string BaseUrl = "http://grsgrsgrs.somee.com/Regrando/Aguas"; 
+        private readonly HttpClient _httpClient;
 
-        public AguaService(string token)
+        public AguaService()
         {
-            _request = new Request(); ;
-            _token = token;
+            _httpClient = new HttpClient();
+        }
+
+        public async Task<ObservableCollection<Agua>> GetAguasAsync()
+        {
+            ObservableCollection<Agua> aguas = null;
+
+            HttpResponseMessage response = await _httpClient.GetAsync(BaseUrl);
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                aguas = JsonConvert.DeserializeObject<ObservableCollection<Agua>>(content);
+            }
+
+            return aguas;
+        }
+
+        public async Task<Agua> GetAguaByIdAsync(int id)
+        {
+            Agua agua = null;
+
+            HttpResponseMessage response = await _httpClient.GetAsync($"{BaseUrl}/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                agua = JsonConvert.DeserializeObject<Agua>(content);
+            }
+
+            return agua;
         }
 
         public async Task<int> PostAguaAsync(Agua agua)
         {
-            return await _request.PostReturnIntAsync(apiUrlBase, agua, _token);
+            string json = JsonConvert.SerializeObject(agua);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await _httpClient.PostAsync(BaseUrl, content);
+            response.EnsureSuccessStatusCode(); // Lança exceção em caso de erro
+
+            string responseContent = await response.Content.ReadAsStringAsync();
+            int newId = JsonConvert.DeserializeObject<int>(responseContent);
+
+            return newId;
         }
-        public async Task<ObservableCollection<Agua>> GetAguaAsync()
+
+        public async Task<bool> PutAguaAsync(int id, Agua agua)
         {
-            string urlComplementar = string.Format("{0}", "/GetAll");
-            ObservableCollection<Models.Agua> listaAguas = await
-                _request.GetAsync<ObservableCollection<Models.Agua>>(apiUrlBase + urlComplementar, _token);
-            return listaAguas;
+            string json = JsonConvert.SerializeObject(agua);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await _httpClient.PutAsync($"{BaseUrl}/{id}", content);
+            return response.IsSuccessStatusCode;
         }
-        public async Task<Agua> GetAguaAsync(int aguaId)
+
+        public async Task<bool> DeleteAguaAsync(int id)
         {
-            string urlComplementar = string.Format("/{0}", aguaId);
-            var agua = await _request.GetAsync<Models.Agua>(apiUrlBase + urlComplementar, _token);
-            return agua;
-        }
-        public async Task<int> PutAguaAsync(Agua agua)
-        {
-            var result = await _request.PutAsync(apiUrlBase, agua, _token);
-            return result;
-        }
-        public async Task<int> DeleteAguaAsync(int aguaId)
-        {
-            string urlComplementar = string.Format("/{0}", aguaId);
-            var result = await _request.DeleteAsync(apiUrlBase + urlComplementar, _token);
-            return result;
+            HttpResponseMessage response = await _httpClient.DeleteAsync($"{BaseUrl}/{id}");
+            return response.IsSuccessStatusCode;
         }
     }
 }

@@ -19,7 +19,7 @@ namespace MauiApp1.ViewModels.Aguas
         public ListagemAguaViewModel()
         {
             string token = Preferences.Get("UsuarioToken", string.Empty);
-            _aService = new AguaService(token);
+            _aService = new AguaService();
             Aguas = new ObservableCollection<Agua>();
             _ = ObterAguas();
 
@@ -34,7 +34,7 @@ namespace MauiApp1.ViewModels.Aguas
         {
             try
             {
-                Aguas = await _aService.GetAguaAsync();
+                Aguas = await _aService.GetAguasAsync();
                 OnPropertyChanged(nameof(Aguas));
             }
             catch (Exception ex)

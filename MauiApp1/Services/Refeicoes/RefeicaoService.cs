@@ -11,7 +11,7 @@ namespace MauiApp1.Services.Refeicoes
     public class RefeicaoService : Request
     {
         private readonly Request _request;
-        private const string apiUrlBase = "";
+        private const string apiUrlBase = "http://grsgrsgrs.somee.com/Regrando/Refeicoes";
         private string _token;
 
         public RefeicaoService(string token)

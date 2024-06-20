@@ -17,7 +17,7 @@ namespace MauiApp1.ViewModels.Aguas
         public CadastroAguaViewModel()
         {
             string token = Preferences.Get("UsuarioToken", string.Empty);
-            aService = new AguaService(token);
+            aService = new AguaService();
 
             SalvarCommand = new Command(async () => { await SalvarAgua(); });
             CancelarCommand = new Command(async => CancelarCadastro());
@@ -65,7 +65,7 @@ namespace MauiApp1.ViewModels.Aguas
                 if (agua.Id == 0)
                     await aService.PostAguaAsync(agua);
                 else
-                    await aService.PutAguaAsync(agua);
+                    await aService.PutAguaAsync(agua.Id, agua);
 
                 await Application.Current.MainPage
                              .DisplayAlert("Mensagem", "Dados salvos com sucesso!", "Ok");
@@ -88,7 +88,7 @@ namespace MauiApp1.ViewModels.Aguas
             try
             {
                 Agua a = await
-                aService.GetAguaAsync(int.Parse(aguaSelecionadoId));
+                aService.GetAguaByIdAsync(int.Parse(aguaSelecionadoId));
                 this.Id = a.Id;
                 this.Consumo = a.Consumo;
                 this.timeOnly = a.timeOnly;

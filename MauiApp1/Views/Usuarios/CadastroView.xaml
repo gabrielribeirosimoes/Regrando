@@ -3,36 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.Views.Usuarios.CadastroView"
              Title="CadastroView">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style TargetType="Entry">
-                <Setter Property="FontSize" Value="Large" />
-                <Setter Property="BackgroundColor" Value="LightCyan" />
-                <Setter Property="TextColor" Value="Black" />
-                <Setter Property="Margin" Value="0,10,0,0" />
-                <Setter Property="HorizontalOptions" Value="Center" />
-                <Setter Property="WidthRequest" Value="300" />
-            </Style>
-            <Style TargetType="Button">
-                <Setter Property="FontSize" Value="Medium" />
-                <Setter Property="BackgroundColor" Value="Orange" />
-                <Setter Property="TextColor" Value="White" />
-                <Setter Property="Margin" Value="0,20,0,0" />
-                <Setter Property="HorizontalOptions" Value="Center" />
-                <Setter Property="WidthRequest" Value="200" />
-            </Style>
-            <Style TargetType="Label">
-                <Setter Property="FontSize" Value="Large" />
-                <Setter Property="TextColor" Value="Teal" />
-                <Setter Property="HorizontalOptions" Value="Center" />
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-    <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="CenterAndExpand" HorizontalOptions="Center">
-        <Label Text="Cadastro de Usuário" />
-        <Entry Placeholder="Digite seu nome " Text="{Binding Nome}" />
-        <Entry Placeholder="Digite seu nome de usuário" Text="{Binding Login}" />
-        <Entry Placeholder="Digite a senha" Text="{Binding Senha}" IsPassword="True" />
-        <Button Text="Registrar" Command="{Binding RegistrarCommand}" />
+    <VerticalStackLayout>
+        <Label 
+            Text="Welcome to .NET MAUI!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
     </VerticalStackLayout>
 </ContentPage>

@@ -11,7 +11,7 @@ namespace MauiApp1.Services.Receitas
     public class ReceitaService : Request
     {
         private readonly Request _request;
-        private const string apiUrlBase = "";
+        private const string apiUrlBase = "http://grsgrsgrs.somee.com/Regrando/Receita";
         private string _token;
 
         public ReceitaService(string token)
