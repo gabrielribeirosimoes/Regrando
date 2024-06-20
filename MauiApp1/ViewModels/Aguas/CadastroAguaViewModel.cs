@@ -20,17 +20,17 @@ namespace MauiApp1.ViewModels.Aguas
             aService = new AguaService();
 
             SalvarCommand = new Command(async () => { await SalvarAgua(); });
-            CancelarCommand = new Command(async => CancelarCadastro());
+            CancelarCommand = new Command(async () => { await CancelarCadastro(); });
         }
 
         #region Atributos
-        private int id;
-        private double consumo;
-        private TimeOnly timeonly;
+        private int idAgua;
+        private int? qtdAgua;
+        private TimeSpan? hrAgua;
 
-        public int Id { get => id; set { id = value; OnPropertyChanged(nameof(Id)); } }
-        public double Consumo { get => consumo; set { consumo = value; OnPropertyChanged(nameof(Consumo)); } }
-        public TimeOnly timeOnly { get => timeonly; set { timeonly = value; OnPropertyChanged(nameof(TimeOnly)); } }
+        public int IdAgua { get => idAgua; set { idAgua = value; OnPropertyChanged(nameof(IdAgua)); } }
+        public int? QtdAgua { get => qtdAgua; set { qtdAgua = value; OnPropertyChanged(nameof(QtdAgua)); } }
+        public TimeSpan? HrAgua { get => hrAgua; set { hrAgua = value; OnPropertyChanged(nameof(HrAgua)); } }
 
         private string aguaSelecionadoId;
         public string AguaSelecionadoId
@@ -54,18 +54,17 @@ namespace MauiApp1.ViewModels.Aguas
         {
             try
             {
-                Agua agua = new Agua()
-                {
-                    Id = id,
-                    Consumo = consumo,
-                    timeOnly = timeOnly,
-                    
-                };
+                Agua agua = new Agua();
 
-                if (agua.Id == 0)
+                agua.IdAgua = idAgua;
+                agua.QtdAgua = qtdAgua;
+                agua.HrAgua = DateTime.Now.TimeOfDay;
+                
+
+                if (agua.IdAgua == 0)
                     await aService.PostAguaAsync(agua);
                 else
-                    await aService.PutAguaAsync(agua.Id, agua);
+                    await aService.PutAguaAsync(agua.IdAgua, agua);
 
                 await Application.Current.MainPage
                              .DisplayAlert("Mensagem", "Dados salvos com sucesso!", "Ok");
@@ -78,7 +77,7 @@ namespace MauiApp1.ViewModels.Aguas
             }
         }
 
-        private async void CancelarCadastro()
+        private async Task CancelarCadastro()
         {
             await Shell.Current.GoToAsync("..");
         }
@@ -87,11 +86,10 @@ namespace MauiApp1.ViewModels.Aguas
         {
             try
             {
-                Agua a = await
-                aService.GetAguaByIdAsync(int.Parse(aguaSelecionadoId));
-                this.Id = a.Id;
-                this.Consumo = a.Consumo;
-                this.timeOnly = a.timeOnly;
+                Agua agua = await aService.GetAguaByIdAsync(int.Parse(aguaSelecionadoId));
+                this.IdAgua = agua.IdAgua;
+                this.QtdAgua = agua.QtdAgua;
+                this.HrAgua = agua.HrAgua;
             }
             catch (Exception ex)
             {
@@ -101,5 +99,4 @@ namespace MauiApp1.ViewModels.Aguas
         }
         #endregion
     }
-
 }

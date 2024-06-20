@@ -8,8 +8,11 @@ namespace MauiApp1.Models
 {
     public class Agua
     {
-        public int Id { get; set; }
-        public double Consumo { get; set; }
-        public TimeOnly timeOnly { get; set; }
+        
+        public int IdAgua { get; set; }
+
+        public TimeSpan? HrAgua { get; set; }
+
+        public int? QtdAgua { get; set; }
     }
 }

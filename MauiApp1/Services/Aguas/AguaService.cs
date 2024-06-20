@@ -32,11 +32,11 @@ namespace MauiApp1.Services.Aguas
             return aguas;
         }
 
-        public async Task<Agua> GetAguaByIdAsync(int id)
+        public async Task<Agua> GetAguaByIdAsync(int IdAgua)
         {
             Agua agua = null;
 
-            HttpResponseMessage response = await _httpClient.GetAsync($"{BaseUrl}/{id}");
+            HttpResponseMessage response = await _httpClient.GetAsync($"{BaseUrl}/{IdAgua}");
             if (response.IsSuccessStatusCode)
             {
                 string content = await response.Content.ReadAsStringAsync();
@@ -55,23 +55,23 @@ namespace MauiApp1.Services.Aguas
             response.EnsureSuccessStatusCode(); // Lança exceção em caso de erro
 
             string responseContent = await response.Content.ReadAsStringAsync();
-            int newId = JsonConvert.DeserializeObject<int>(responseContent);
+            Agua retornoAgua = JsonConvert.DeserializeObject<Agua>(responseContent);
 
-            return newId;
+            return retornoAgua.IdAgua;
         }
 
-        public async Task<bool> PutAguaAsync(int id, Agua agua)
+        public async Task<bool> PutAguaAsync(int IdAgua, Agua agua)
         {
             string json = JsonConvert.SerializeObject(agua);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response = await _httpClient.PutAsync($"{BaseUrl}/{id}", content);
+            HttpResponseMessage response = await _httpClient.PutAsync($"{BaseUrl}/{IdAgua}", content);
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> DeleteAguaAsync(int id)
+        public async Task<bool> DeleteAguaAsync(int IdAgua)
         {
-            HttpResponseMessage response = await _httpClient.DeleteAsync($"{BaseUrl}/{id}");
+            HttpResponseMessage response = await _httpClient.DeleteAsync($"{BaseUrl}/{IdAgua}");
             return response.IsSuccessStatusCode;
         }
     }

@@ -66,7 +66,7 @@ namespace MauiApp1.ViewModels.Aguas
                 if (value != null)
                 {
                     _aguaSelecionado = value;
-                    Shell.Current.GoToAsync($"cadAguaView?pId={_aguaSelecionado.Id}");
+                    Shell.Current.GoToAsync($"cadAguaView?pId={_aguaSelecionado.IdAgua}");
                 }
             }
         }
@@ -77,7 +77,7 @@ namespace MauiApp1.ViewModels.Aguas
             {
                 if (await Application.Current.MainPage.DisplayAlert("Atenção", "Deseja realmente excluir a água?", "Sim", "Não"))
                 {
-                    await _aService.DeleteAguaAsync(a.Id);
+                    await _aService.DeleteAguaAsync(a.IdAgua);
                     await Application.Current.MainPage.DisplayAlert("Sucesso", "Refeição excluída com sucesso", "Ok");
                     _ = ObterAguas();
                 }

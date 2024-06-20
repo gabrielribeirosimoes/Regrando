@@ -44,16 +44,16 @@
         <VerticalStackLayout Spacing="10" Padding="15" HorizontalOptions="FillAndExpand">
             <Label Text="Id" />
             <Frame>
-                <Entry Text="{Binding Id}" />
+                <Entry Text="{Binding IdAgua}" />
             </Frame>
             <Label Text="Consumo" />
             <Frame>
-                <Entry Text="{Binding Consumo}" Keyboard="Numeric" />
+                <Entry Text="{Binding QtdAgua}" Keyboard="Numeric" />
             </Frame>
-            <Label Text="Horário" />
+            <!--<Label Text="Horário" />
             <Frame>
                 <TimePicker FontAttributes="Bold"/>
-            </Frame>
+            </Frame>-->
             <HorizontalStackLayout Spacing="20" HorizontalOptions="FillAndExpand">
                 <Button Text="Salvar" Command="{Binding SalvarCommand}" Style="{StaticResource SalvarButtonStyle}" />
                 <Button Text="Cancelar" Command="{Binding CancelarCommand}" Style="{StaticResource CancelarButtonStyle}" />
