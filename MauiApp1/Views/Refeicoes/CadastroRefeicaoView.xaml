@@ -48,7 +48,7 @@
     </ContentPage.Resources>
 
     <ScrollView>
-        <VerticalStackLayout Spacing="10" Padding="15" HorizontalOptions="FillAndExpand">
+        <StackLayout Spacing="10" Padding="15" HorizontalOptions="FillAndExpand">
             <Label Text="Cadastro de Refeição" />
             <Frame>
                 <Entry Text="{Binding Id}" IsEnabled="False" />
@@ -57,36 +57,29 @@
             <Frame>
                 <Entry Text="{Binding Nome}" />
             </Frame>
-            <Label Text="Tipoe de Refeição" />
+            <Label Text="Tipo de Refeição" />
             <Picker Title="---Selecione---" ItemsSource="{Binding ListaTiposClasse}" ItemDisplayBinding="{Binding Descricao}" SelectedItem="{Binding TipoClasseSelecionado}" />
-            <Label Text="Carboidratos" />
-            <Frame>
-                <Entry Text="{Binding Carboidratos}" Keyboard="Numeric" />
-            </Frame>
-            <Label Text="Gorduras" />
-            <Frame>
-                <Entry Text="{Binding Gorduras}" Keyboard="Numeric" />
-            </Frame>
-            <Label Text="Proteinas" />
-            <Frame>
-                <Entry Text="{Binding Proteinas}" Keyboard="Numeric" />
-            </Frame>
-            <Label Text="Calorias" />
-            <Frame>
-                <Entry Text="{Binding Calorias}" Keyboard="Numeric" />
-            </Frame>
-            <Label Text="Fibras" />
-            <Frame>
-                <Entry Text="{Binding Fibras}" Keyboard="Numeric" />
-            </Frame>
-            <Label Text="Sodio" />
-            <Frame>
-                <Entry Text="{Binding Sodio}" Keyboard="Numeric" />
-            </Frame>
+            <Label Text="Alimentos Adicionados" />
+            <ListView ItemsSource="{Binding Alimentos}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Nome}" VerticalOptions="Center" />
+                                <Label Text="{Binding Quantidade}" VerticalOptions="Center" />
+                                <Button Text="Remover" Command="{Binding RemoveCommand}" Style="{StaticResource CancelarButtonStyle}" HorizontalOptions="EndAndExpand" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Label Text="Buscar Alimento" />
+            <Entry Text="{Binding TermoBusca}" />
+            <Button Text="Buscar" Command="{Binding BuscarAlimentosCommand}" Style="{StaticResource SalvarButtonStyle}" />
             <HorizontalStackLayout Spacing="20" HorizontalOptions="FillAndExpand">
                 <Button Text="Salvar" Command="{Binding SalvarCommand}" Style="{StaticResource SalvarButtonStyle}" />
                 <Button Text="Cancelar" Command="{Binding CancelarCommand}" Style="{StaticResource CancelarButtonStyle}" />
             </HorizontalStackLayout>
-        </VerticalStackLayout>
+        </StackLayout>
     </ScrollView>
 </ContentPage>

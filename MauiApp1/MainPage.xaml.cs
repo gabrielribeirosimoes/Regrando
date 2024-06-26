@@ -6,17 +6,20 @@ namespace MauiApp1
     public partial class MainPage : ContentPage
     {
         int count = 0;
+        private AuthService authService;
+
 
         public MainPage()
         {
             InitializeComponent();
             SetGreeting();
             BindingContext = this;
+            authService = new AuthService();
+            authService.OnAuthStateChanged += AuthStateChanged;
         }
 
         private void SetGreeting()
         {
-            // Recuperando o nome do usuário das preferências
             string username = Preferences.Get("UsuarioUsername", "Usuário");
 
             string greeting;
@@ -38,6 +41,10 @@ namespace MauiApp1
             GreetingLabel.Text = $"{greeting}, {username}!";
         }
 
+        private void AuthStateChanged(object sender, bool isAuthenticated)
+        {
+            
+        }
 
     }
 }

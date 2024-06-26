@@ -30,6 +30,8 @@ namespace MauiApp1.ViewModels.Usuarios
         public ICommand AutenticarCommand { get; set; }
         public ICommand RegistrarCommand { get; set; }
         public ICommand DirecionarCadastroCommand { get; set; }
+        public ICommand SairCommand { get; set; }
+
         #endregion
 
         #region AtributosPropriedades
@@ -143,6 +145,13 @@ namespace MauiApp1.ViewModels.Usuarios
             {
                 await Application.Current.MainPage.DisplayAlert("Informação", ex.Message + " Detalhes: " + ex.InnerException, "Ok");
             }
+        }
+
+        public async void ExecuteSairCommand()
+        {
+            Preferences.Clear();
+
+            await Application.Current.MainPage.Navigation.PushAsync(new LoginView());
         }
         #endregion
     }

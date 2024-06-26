@@ -9,14 +9,11 @@ namespace MauiApp1.Models
 {
     public class Refeicao
     {
-        public int Id { get; set; }
-        public string Nome { get; set; }
-        public int Carboidratos { get; set; }
-        public int Gorduras { get; set; }
-        public int Proteinas { get; set; }
-        public int Calorias { get; set; }
-        public int Fibras { get; set; }
-        public int Sodio { get; set; }
-        public TipoRefeicaoEnum Classe { get; set; }
+        public int IdRefeicao { get; set; }
+        public int IdUsuario { get; set; }
+        public int IdAlimento { get; set; }
+        public TipoRefeicaoEnum TpRefeicao { get; set; }
+
     }
+
 }

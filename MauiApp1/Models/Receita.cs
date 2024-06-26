@@ -8,11 +8,13 @@ namespace MauiApp1.Models
 {
     public class Receita
     {
-        public int Id { get; set; }
-        public string Nome { get; set; }
+        public int IdReceita { get; set; }
+        public string NomeReceita { get; set; }
         public string Descricao { get; set; }
         public string Ingredientes { get; set; }
-        public string Preparo { get; set; }
+        public string ModoPreparo { get; set; }
+        public int Calorias { get; set; }
+        public int TempoPreparoMinutos { get; set; }
 
     }
 }

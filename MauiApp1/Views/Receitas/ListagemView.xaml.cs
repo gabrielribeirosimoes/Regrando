@@ -1,21 +1,24 @@
 using MauiApp1.ViewModels.Receitas;
+using Microsoft.Maui.Controls;
 
-namespace MauiApp1.Views.Receitas;
-
-public partial class ListagemView : ContentPage
+namespace MauiApp1.Views.Receitas
 {
-    ListagemReceitaViewModel viewModel;
-    public ListagemView()
+    public partial class ListagemView : ContentPage
     {
-        InitializeComponent();
-        viewModel = new ListagemReceitaViewModel();
-        BindingContext = viewModel;
-        Title = "Receitas";
-    }
+        private ListagemReceitaViewModel viewModel;
 
-    protected override void OnAppearing()
-    {
-        base.OnAppearing();
-        _ = viewModel.ObterReceitas();
+        public ListagemView()
+        {
+            InitializeComponent();
+            viewModel = new ListagemReceitaViewModel();
+            BindingContext = viewModel;
+            Title = "Receitas";
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            //viewModel.ObterReceitas(); 
+        }
     }
 }

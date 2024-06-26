@@ -3,34 +3,68 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.Views.Refeicoes.ListagemView"
              Title="ListagemView">
-    <Shell.TitleView>
-        <Button Command="{Binding NovaRefeicao}" Text="Novo" HorizontalOptions="End"/>
-    </Shell.TitleView>
-    <ScrollView>
-        <VerticalStackLayout Padding="10, 0, 0, 0" VerticalOptions="FillAndExpand">
-            <ListView x:Name="listView" HasUnevenRows="True" ItemsSource="{Binding Refeicoes}"
-                      SelectedItem="{Binding RefeicaoSelecionado}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <ViewCell.ContextActions>
-                                <MenuItem Text="Remover" IsDestructive="True" Command="{Binding Path=BindingContext.RemoverPersonagemCommand, Source={x:Reference listView}}"
-              CommandParameter="{Binding .}"></MenuItem>
-                            </ViewCell.ContextActions>
-                            <StackLayout Padding="10">
-                                <Label Text="{Binding Id}" FontSize="18" FontAttributes="Bold"/>
-                                <Label Text="{Binding Nome}" FontSize="18" FontAttributes="Bold"/>
-                                <Label Text="{Binding Carboidratos}" FontSize="18" FontAttributes="Bold"/>
-                                <Label Text="{Binding Gorduras}" FontSize="18" FontAttributes="Bold"/>
-                                <Label Text="{Binding Proteinas}" FontSize="18" FontAttributes="Bold"/>
-                                <Label Text="{Binding Calorias}" FontSize="18" FontAttributes="Bold"/>
-                                <Label Text="{Binding Fibras}" FontSize="18" FontAttributes="Bold"/>
-                                <Label Text="{Binding Sodio}" FontSize="18" FontAttributes="Bold"/>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </VerticalStackLayout>
-    </ScrollView>
+    <Frame Padding="0" CornerRadius="15" BackgroundColor="#E0FFFF" Margin="5" HasShadow="True">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <ScrollView Grid.Row="0">
+                <VerticalStackLayout Padding="20">
+                    <Frame BackgroundColor="LightSalmon" CornerRadius="30" Margin="0, 10, 0, 10">
+                        <StackLayout Padding="10">
+                            <Label Text="Café da Manhã" FontSize="20" FontAttributes="Bold" TextColor="White"/>
+                            <Label Text="Ovos mexidos ~148 calorias" FontSize="16"/>
+                            <Label Text="Pão francês ~150 calorias" FontSize="16"/>
+                            <Label Text="Granola (100g) ~417 calorias" FontSize="16"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame BackgroundColor="LightSalmon" CornerRadius="30" Margin="0, 10, 0, 10">
+                        <StackLayout Padding="10">
+                            <Label Text="Almoço" FontSize="20" FontAttributes="Bold" TextColor="White"/>
+                            <Label Text="Não preenchido" FontSize="14" TextColor="#808080"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame BackgroundColor="LightSalmon" CornerRadius="30" Margin="0, 10, 0, 10">
+                        <StackLayout Padding="10">
+                            <Label Text="Jantar" FontSize="20" FontAttributes="Bold" TextColor="White"/>
+                            <Label Text="Não preenchido" FontSize="14" TextColor="#808080"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame BackgroundColor="LightSalmon" CornerRadius="30" Margin="0, 10, 0, 10">
+                        <StackLayout Padding="10">
+                            <Label Text="Lanches/ Snacks" FontSize="20" FontAttributes="Bold" TextColor="White"/>
+                            <Label Text="Não preenchido" FontSize="14" TextColor="#808080"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <ListView x:Name="listView" HasUnevenRows="True" ItemsSource="{Binding Refeicoes}"
+                          SelectedItem="{Binding RefeicaoSelecionado}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <ViewCell.ContextActions>
+                                        <MenuItem Text="Remover" IsDestructive="True"
+                                              Command="{Binding Path=BindingContext.RemoverPersonagemCommand, Source={x:Reference listView}}"
+                                              CommandParameter="{Binding .}"/>
+                                    </ViewCell.ContextActions>
+                                    <StackLayout Padding="10">
+                                        <Label Text="{Binding Exemplo}" FontSize="18" FontAttributes="Bold"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </VerticalStackLayout>
+            </ScrollView>
+
+            <Button Grid.Row="1" Command="{Binding NovaRefeicao}" Text="Novo Registro de Refeição"
+                    HorizontalOptions="FillAndExpand" VerticalOptions="End" Margin="20" HeightRequest="60" FontSize="20"
+                    BackgroundColor="White" BorderColor="LightSalmon" BorderWidth="2" TextColor="LightSalmon"/>
+        </Grid>
+    </Frame>
 </ContentPage>

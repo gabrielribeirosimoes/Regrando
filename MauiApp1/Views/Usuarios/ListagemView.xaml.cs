@@ -1,9 +1,19 @@
-namespace MauiApp1.Views.Usuarios;
+using MauiApp1.ViewModels.Usuarios;
+using Microsoft.Maui.Controls;
 
-public partial class ListagemView : ContentPage
+namespace MauiApp1.Views.Usuarios
 {
-	public ListagemView()
-	{
-		InitializeComponent();
-	}
+    public partial class ListagemView : ContentPage
+    {
+        public ListagemView()
+        {
+            InitializeComponent();
+
+            var viewModel = new UsuarioViewModel();
+
+            BindingContext = viewModel;
+
+
+        }
+    }
 }

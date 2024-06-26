@@ -2,30 +2,59 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.Views.Aguas.ListagemView"
-             Title="ListagemView">
-    <Shell.TitleView>
-        <Button Command="{Binding NovaAgua}" Text="Novo" HorizontalOptions="End"/>
-    </Shell.TitleView>
-    <ScrollView>
-        <VerticalStackLayout Padding="10, 0, 0, 0" VerticalOptions="FillAndExpand">
-            <ListView x:Name="listView" HasUnevenRows="True" ItemsSource="{Binding Aguas}" 
-                      SelectedItem="{Binding AguaSelecionado}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <ViewCell.ContextActions>
-                                <MenuItem Text="Remover" IsDestructive="True" Command="{Binding Path=BindingContext.RemoverPersonagemCommand, Source={x:Reference listView}}"
-CommandParameter="{Binding .}"></MenuItem>
-                            </ViewCell.ContextActions>
-                            <StackLayout Padding="10">
-                                <Label Text="{Binding Id}" FontSize="18" FontAttributes="Bold"/>
-                                <Label Text="{Binding Consumo}" FontSize="14"/>
-                                <TimePicker FontAttributes="Bold"/>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </VerticalStackLayout>
-    </ScrollView>
+             Title="ListagemView"
+             >
+    <Frame Padding="5" CornerRadius="15" BackgroundColor="#E0FFFF" Margin="5" HasShadow="True">
+
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="10, 0, 0, 0" VerticalOptions="FillAndExpand">
+                <Label Text="Últimos Registros" 
+                       FontSize="24" 
+                       FontAttributes="Bold" 
+                       HorizontalOptions="Center"
+                       Margin="0,10,0,10" />
+
+
+                <CollectionView ItemsSource="{Binding Aguas}" 
+                                SelectionMode="None"
+                                Margin="0,10,0,10">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"
+                                         Span="3" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Padding="10" 
+                                   BackgroundColor="LightSalmon" 
+                                   Margin="5,5,5,5" 
+                                   CornerRadius="10" 
+                                   HasShadow="True">
+                                <StackLayout>
+                                    <Label Text="{Binding IdAgua}" 
+                                           FontSize="18" 
+                                           FontAttributes="Bold"
+                                           TextColor="White"/>
+                                    <Label Text="{Binding QtdAgua}" 
+                                           FontSize="14"
+                                           TextColor="White"/>
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Button Grid.Row="1" Command="{Binding NovaAgua}" 
+                Text="Novo Registro de Hidratação" 
+                HorizontalOptions="FillAndExpand" VerticalOptions="End" Margin="20" HeightRequest="60" FontSize="20"
+                BackgroundColor="White" BorderColor="LightSalmon" BorderWidth="2" TextColor="LightSalmon"/>
+    </Grid>
+    </Frame>
 </ContentPage>

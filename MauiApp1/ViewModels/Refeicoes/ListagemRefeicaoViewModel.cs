@@ -68,7 +68,7 @@ namespace MauiApp1.ViewModels.Refeicoes
                 if (value != null)
                 {
                     _refeicaoSelecionado = value;
-                    Shell.Current.GoToAsync($"cadRefeicaoView?pId={_refeicaoSelecionado.Id}");
+                    Shell.Current.GoToAsync($"cadRefeicaoView?pId={_refeicaoSelecionado.IdRefeicao}");
                 }
             }
         }
@@ -79,7 +79,7 @@ namespace MauiApp1.ViewModels.Refeicoes
             {
                 if (await Application.Current.MainPage.DisplayAlert("Atenção", "Deseja realmente excluir a refeicão?", "Sim", "Não"))
                 {
-                    await _rService.DeleteRefeicaoAsync(p.Id);
+                    await _rService.DeleteRefeicaoAsync(p.IdRefeicao);
                     await Application.Current.MainPage.DisplayAlert("Sucesso", "Refeição excluída com sucesso", "Ok");
                     _ = ObterRefeicoes();
                 }

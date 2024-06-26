@@ -3,61 +3,72 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.Views.Aguas.CadastroAguaView"
              Shell.PresentationMode="Animated"
-             Title="CadastroAguaView">
+             Title="CadastroAguaView"
+             BackgroundColor="#E0FFFF" >
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label">
                 <Setter Property="FontSize" Value="Medium" />
-                <Setter Property="TextColor" Value="Blue" />
-                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="TextColor" Value="#01796F" />
+                <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="Margin" Value="0,10,0,0" />
             </Style>
             <Style TargetType="Frame">
-                <Setter Property="CornerRadius" Value="10" />
-                <Setter Property="Padding" Value="0" />
+                <Setter Property="CornerRadius" Value="20" />
+                <Setter Property="Padding" Value="10" />
                 <Setter Property="Margin" Value="0,10,0,0" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="HasShadow" Value="False" />
             </Style>
             <Style TargetType="Entry">
-                <Setter Property="FontSize" Value="Medium" />
-                <Setter Property="BackgroundColor" Value="LightGray" />
+                <Setter Property="FontSize" Value="Large" />
+                
                 <Setter Property="Margin" Value="10,0" />
-                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="HeightRequest" Value="60" />
             </Style>
             <Style TargetType="Button">
                 <Setter Property="FontSize" Value="Medium" />
                 <Setter Property="TextColor" Value="White" />
-                <Setter Property="CornerRadius" Value="10" />
-                <Setter Property="Margin" Value="0,10,0,0" />
+                <Setter Property="CornerRadius" Value="15" />
+                <Setter Property="HeightRequest" Value="50" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
             </Style>
             <Style x:Key="SalvarButtonStyle" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="Orange" />
+                <Setter Property="BackgroundColor" Value="#FFA500" />
+                <Setter Property="Margin" Value="0,20,0,0" />
             </Style>
             <Style x:Key="CancelarButtonStyle" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="LightCoral" />
+                <Setter Property="BackgroundColor" Value="#FF6347" />
+                <Setter Property="Margin" Value="0,10,0,0" />
+            </Style>
+            <Style x:Key="CuriosidadeFrameStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="LightSalmon" />
+                <Setter Property="CornerRadius" Value="30" />
+                <Setter Property="Padding" Value="20" />
+                <Setter Property="Margin" Value="5,20,5,5" />
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
+
     <ScrollView>
-        <VerticalStackLayout Spacing="10" Padding="15" HorizontalOptions="FillAndExpand">
-            <Label Text="Id" />
+        <VerticalStackLayout Spacing="20" Padding="15" HorizontalOptions="FillAndExpand">
+            <Label Text="Informe quanto você bebeu de água:" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" TextColor="#01796F" />
+
             <Frame>
-                <Entry Text="{Binding IdAgua}" />
+                <Entry Placeholder="quantidade em ml" Text="{Binding QtdAgua}" Keyboard="Numeric" Style="{StaticResource EntryStyle}" />
             </Frame>
-            <Label Text="Consumo" />
-            <Frame>
-                <Entry Text="{Binding QtdAgua}" Keyboard="Numeric" />
+
+            <Button Text="Salvar" Command="{Binding SalvarCommand}" Style="{StaticResource SalvarButtonStyle}" />
+            <Button Text="Cancelar" Command="{Binding CancelarCommand}" Style="{StaticResource CancelarButtonStyle}" />
+
+            <Frame Style="{StaticResource CuriosidadeFrameStyle}">
+                <VerticalStackLayout>
+                    
+                    <Label Text="A água é essencial para o funcionamento do corpo humano. Ela regula a temperatura, transporta nutrientes e ajuda na digestão." FontSize="Medium" TextColor="white" HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
             </Frame>
-            <!--<Label Text="Horário" />
-            <Frame>
-                <TimePicker FontAttributes="Bold"/>
-            </Frame>-->
-            <HorizontalStackLayout Spacing="20" HorizontalOptions="FillAndExpand">
-                <Button Text="Salvar" Command="{Binding SalvarCommand}" Style="{StaticResource SalvarButtonStyle}" />
-                <Button Text="Cancelar" Command="{Binding CancelarCommand}" Style="{StaticResource CancelarButtonStyle}" />
-            </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

@@ -8,11 +8,14 @@ namespace MauiApp1.Models
 {
     public class Agua
     {
-        
+
         public int IdAgua { get; set; }
 
-        public TimeSpan? HrAgua { get; set; }
+        //public TimeSpan HrAgua { get; set; }
 
         public int? QtdAgua { get; set; }
+
+       // public string HrAguaString => HrAgua.ToString("hh\\:mm");
+
     }
 }

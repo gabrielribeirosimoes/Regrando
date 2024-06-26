@@ -2,30 +2,49 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.Views.Receitas.ListagemView"
-             Title="ListagemView">
-    
-    <ScrollView>
-        <VerticalStackLayout Padding="10, 0, 0, 0" VerticalOptions="FillAndExpand">
-            <ListView x:Name="listView" HasUnevenRows="True" ItemsSource="{Binding Receitas}"
-                   SelectedItem="{Binding ReceitaSelecionado}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <ViewCell.ContextActions>
-                                <MenuItem Text="Remover" IsDestructive="True" Command="{Binding Path=BindingContext.RemoverPersonagemCommand, Source={x:Reference listView}}"
-           CommandParameter="{Binding .}"></MenuItem>
-                            </ViewCell.ContextActions>
-                            <StackLayout Padding="10">
-                                <Label Text="{Binding Id}" FontSize="18" FontAttributes="Bold"/>
-                                <Label Text="{Binding Nome}" FontSize="18" FontAttributes="Bold"/>
-                                <Label Text="{Binding Descricao}" FontSize="14"/>
-                                <Label Text="{Binding Ingredientes}" FontSize="14"/>
-                                <Label Text="{Binding Preparo}" FontSize="14"/>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </VerticalStackLayout>
-    </ScrollView>
+             Title="Receitas"
+           >
+    <Frame Padding="0" CornerRadius="15" BackgroundColor="#E0FFFF" Margin="5" HasShadow="True">
+
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Frame Grid.Row="0" Padding="10" BackgroundColor="LightSalmon" CornerRadius="10" Margin="10" HasShadow="True">
+            <Label Text="Nesta área, você encontrará diversas receitas saudáveis para fazer em casa. Aproveite e mantenha uma alimentação equilibrada!"
+                   FontSize="16"
+                   TextColor="White"
+                   HorizontalTextAlignment="Center" />
+        </Frame>
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="10, 0, 10, 0" VerticalOptions="FillAndExpand">
+                <ListView x:Name="listView" HasUnevenRows="True" ItemsSource="{Binding Receitas}"
+                          SelectedItem="{Binding ReceitaSelecionado}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame Padding="10" BackgroundColor="White" Margin="10"
+                                       CornerRadius="10" HasShadow="True"
+                                       HorizontalOptions="Center" VerticalOptions="StartAndExpand">
+                                    <StackLayout Spacing="5">
+                                        <Label Text="{Binding NomeReceita}" FontSize="18" FontAttributes="Bold"/>
+                                        <Label Text="{Binding Descricao}" FontSize="14"/>
+                                        <Label Text="{Binding Ingredientes}" FontSize="14"/>
+                                        <Label Text="{Binding ModoPreparo}" FontSize="14"/>
+                                        <Label Text="{Binding Calorias, StringFormat='Calorias: {0}'}" FontSize="14"/>
+                                        <Label Text="{Binding TempoPreparoMinutos, StringFormat='Tempo de Preparo: {0} minutos'}" FontSize="14"/>
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+    </Frame>
+
 </ContentPage>

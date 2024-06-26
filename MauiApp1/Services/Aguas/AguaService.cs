@@ -1,16 +1,15 @@
 ﻿using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using System.Net.Http;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using MauiApp1.Models;
 using System.Text;
-
 
 namespace MauiApp1.Services.Aguas
 {
     public class AguaService
     {
-        private const string BaseUrl = "http://grsgrsgrs.somee.com/Regrando/Aguas"; 
+        private const string BaseUrl = "http://regrando.somee.com/regrandoo/api/Aguas";
         private readonly HttpClient _httpClient;
 
         public AguaService()
@@ -52,7 +51,7 @@ namespace MauiApp1.Services.Aguas
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
             HttpResponseMessage response = await _httpClient.PostAsync(BaseUrl, content);
-            response.EnsureSuccessStatusCode(); // Lança exceção em caso de erro
+            response.EnsureSuccessStatusCode();
 
             string responseContent = await response.Content.ReadAsStringAsync();
             Agua retornoAgua = JsonConvert.DeserializeObject<Agua>(responseContent);

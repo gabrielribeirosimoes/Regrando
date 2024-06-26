@@ -1,56 +1,76 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiApp1.MainPage"
-            >
+             x:Class="MauiApp1.MainPage">
 
-    <Frame Padding="0" CornerRadius="15" BackgroundColor="LightSalmon">
-        <ScrollView>
-            <StackLayout Padding="10,0" Spacing="40">
-                <!-- Saudação com base no horário e nome do usuário -->
-                <Label x:Name="GreetingLabel"
-                       Style="{StaticResource Headline}"
-                       SemanticProperties.HeadingLevel="Level1"
-                       Text="{Binding GreetingLabel}" />
+    <ScrollView>
+        <StackLayout>
+            <Frame Padding="0" CornerRadius="15" BackgroundColor="#E0FFFF" Margin="5" HasShadow="True"> 
+                <StackLayout Padding="10,0" Spacing="20">
 
+                    <Label x:Name="GreetingLabel"
+                           Style="{StaticResource Headline}"
+                           SemanticProperties.HeadingLevel="Level1"
+                           Text="{Binding GreetingLabel}" />
 
-
-                <Label Text="Bem-vindo ao Regrando"
-       Style="{StaticResource Headline}"
-       SemanticProperties.HeadingLevel="Level1"
-       LineBreakMode="TailTruncation"
-       FontSize="20" />
-
-                <!-- Parte de rolar para visualizar calorias e ingestão de água -->
-                <ScrollView Orientation="Horizontal">
                     <StackLayout Orientation="Horizontal" Spacing="15" HorizontalOptions="CenterAndExpand">
-                        <Frame BorderColor="Black" Padding="20" BackgroundColor="White" CornerRadius="30">
-                            <StackLayout>
-                                <Label Text="Calorias Consumidas" FontSize="Large" />
-                                <Label x:Name="CaloriesLabel" FontSize="Large" Text="0 kcal" />
+                        <Frame BorderColor="LightSalmon" Padding="10" BackgroundColor="LightSalmon" CornerRadius="20" WidthRequest="160" HeightRequest="160">
+                            <StackLayout VerticalOptions="Center">
+                                <Label Text="Calorias" FontSize="Medium" HorizontalOptions="Center" TextColor="White" />
+
+                                <Image Source="progressocirculo.png" Aspect="AspectFit" HeightRequest="120" WidthRequest="120" HorizontalOptions="Center" VerticalOptions="Center"/>
+
+                                <Label x:Name="CaloriesLabel" FontSize="Medium" Text="0 kcal" HorizontalOptions="Center" TextColor="White"/>
                             </StackLayout>
                         </Frame>
 
-                        <Frame BorderColor="Black" Padding="20" BackgroundColor="White" CornerRadius="30">
-                            <StackLayout>
-                                <Label Text="Ingestão de Água" FontSize="Large" />
-                                <Label x:Name="WaterIntakeLabel" FontSize="Large" Text="0 L" />
+                        <Frame BorderColor="LightSalmon" Padding="10" BackgroundColor="LightSalmon" CornerRadius="20" WidthRequest="160" HeightRequest="160">
+                            <StackLayout VerticalOptions="Center">
+                                <Label Text="Água" FontSize="Medium" HorizontalOptions="Center" TextColor="White" />
+
+                                <Image Source="progressocirculo.png" Aspect="AspectFit" HeightRequest="120" WidthRequest="120" HorizontalOptions="Center" VerticalOptions="Center"/>
+
+                                <Label x:Name="WaterIntakeLabel" FontSize="Medium" Text="0 L" HorizontalOptions="Center" TextColor="White"/>
                             </StackLayout>
                         </Frame>
                     </StackLayout>
-                </ScrollView>
 
 
-                <!-- Caixinha com resumo das Receitas na parte inferior -->
-                <Frame BorderColor="Black" Padding="20" BackgroundColor="#EFEFEF" CornerRadius="30" VerticalOptions="CenterAndExpand" HeightRequest="250">
-                    <StackLayout>
-                        <Label Text="Novas Receitas" FontSize="Medium" FontAttributes="Bold" />
-                        <Label x:Name="RecipesSummaryLabel" FontSize="Small" Text="Aqui vai um resumo das receitas..." />
-                    </StackLayout>
-                </Frame>
 
-            </StackLayout>
-        </ScrollView>
-    </Frame>
+
+                    <Frame BorderColor="LightSalmon" Padding="10" BackgroundColor="LightSalmon" CornerRadius="30" VerticalOptions="CenterAndExpand" HeightRequest="290" WidthRequest="350">
+                        <StackLayout Padding="0,0">
+                            <Label Text="Novas Receitas" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" TextColor="White"/>
+                            <Label x:Name="RecipesSummaryLabel" FontSize="Small" Text="Aqui vai um resumo das receitas..." HorizontalOptions="Center" TextColor="White"/>
+
+                            <Frame Padding="5" CornerRadius="20" BackgroundColor="White" Margin="0,10,0,10">
+                                <Label FontSize="Small" HorizontalOptions="Center" TextColor="Black">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Lasanha à Bolonhesa" FontAttributes="Bold"/>
+                                            <Span Text="&#x0a;&#x0a;"/>
+                                            <Span Text="Deliciosa lasanha de carne moída com molho bolonhesa."/>
+                                            <Span Text="&#x0a;&#x0a;"/>
+                                            <Span Text="Ingredientes: Massa de lasanha, carne moída, molho de tomate, queijo, etc."/>
+                                            <Span Text="&#x0a;&#x0a;"/>
+                                            <Span Text="Modo de Preparo: Cozinhe a massa...."/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                            </Frame>
+                        </StackLayout>
+                    </Frame>
+
+                    <Label Text="Pequenos passos levam a grandes jornadas. Continue avançando!"
+                           FontSize="Small"
+                           TextColor="LightSalmon"
+                           HorizontalTextAlignment="Center"
+                           FontAttributes="Italic"
+                           Margin="20,20"/>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
 
 </ContentPage>
